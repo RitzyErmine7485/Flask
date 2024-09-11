@@ -1,5 +1,0 @@
-mongodb+srv://pacoosorio03:o4tSL8CYmXvznxvV@cluster0.lzk7jih.mongodb.net/flask?retryWrites=true&w=majority&appName=Cluster0
-
-python -m pip install "pymongo[srv]"
-
-nadwansdbajhkwdbla
