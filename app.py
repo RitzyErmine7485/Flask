@@ -60,6 +60,7 @@ def update():
     user = mongo.db.users.find_one({'email': email})
 
     if user and bcrypt.check_password_hash(user['password'], password):
+        return jsonify({'msg': 'Success: User information updated successfully'}), 200
         if new_username:
             mongo.db.users.update_one(user, {'$set': {'username': new_username } })
         elif new_password:
@@ -67,7 +68,6 @@ def update():
         mongo.db.users.update_one(user, {'$set': update_fields })
         else:
             return jsonify({'msg': 'Error: No update fields provided'}), 400
-        return jsonify({'msg': 'Success: User information updated successfully'}), 200
     else:
         return jsonify({'msg': 'Error: Incorrect credentials'}), 401
 
