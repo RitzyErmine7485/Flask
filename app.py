@@ -62,10 +62,10 @@ def update():
     if user and bcrypt.check_password_hash(user['password'], password):
         if new_username:
             mongo.db.users.update_one(user, {'$set': { 'username': new_username } })
-        elif new_password:
+        if new_password:
             hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
             mongo.db.users.update_one(user, {'$set': { 'password': hashed_password } })
-        else:
+        if not new_username and if not new_password:
             return jsonify({'msg': 'Error: No update fields provided'}), 400
         
         return jsonify({'msg': 'Success: User information updated successfully'}), 200
