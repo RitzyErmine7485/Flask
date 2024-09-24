@@ -104,12 +104,12 @@ def login():
 def add_point():
     data = request.get_jason()
     email = data.get('email')
-    score = data.get('score')
 
     if not data or 'email' not in data:
         return jsonify({"error": "Missing email or point data"}), 400
 
     user = mongo.db.users.find_one({'email': email})
+    score = user.get('score')
 
     if not user:
         return jsonify({"error": "User not found"}), 404
