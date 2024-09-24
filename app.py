@@ -100,3 +100,22 @@ def login():
     else: 
         return jsonify({'msg': 'Error: Incorrect credentials'}), 401
 
+@app.route('/add-point', methods=['POST'])
+@jwt_required()
+def add_point():
+    data = request.get_jason()
+    email = data.get('email')
+    score = data.get('score')
+
+    if not data or 'email' not in data:
+        return jsonify({"error": "Missing email or point data"}), 400
+
+    user = mongo.db.users.find_one({'email': email})
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    
+    mongo.db.users.update_one(
+        {'email': email},
+        {'$push': {'score': score + 1}} 
+    )
