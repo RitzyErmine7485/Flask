@@ -102,7 +102,7 @@ def login():
 
 @app.route('/add-point', methods=['POST'])
 def add_point():
-    data = request.get_jason()
+    data = request.get_json()
     email = data.get('email')
 
     if not data or 'email' not in data:
