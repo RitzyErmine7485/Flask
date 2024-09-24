@@ -101,7 +101,6 @@ def login():
         return jsonify({'msg': 'Error: Incorrect credentials'}), 401
 
 @app.route('/add-point', methods=['POST'])
-@jwt_required()
 def add_point():
     data = request.get_jason()
     email = data.get('email')
@@ -119,3 +118,6 @@ def add_point():
         {'email': email},
         {'$push': {'score': score + 1}} 
     )
+
+    return jsonify({"message": "Point added successfully"}), 200
+    
