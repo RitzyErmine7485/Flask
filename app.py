@@ -116,7 +116,7 @@ def add_point():
     
     mongo.db.users.update_one(
         {'email': email},
-        {'$push': {'score': score + 1}} 
+        {'$set': {'score': score + 1}} 
     )
 
     return jsonify({"message": "Point added successfully"}), 200
