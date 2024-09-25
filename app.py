@@ -32,7 +32,6 @@ def register():
         return jsonify({"msg": "Error: Couldn't save the data"}),400
 
 @app.route('/data', methods=['POST'])
-@jwt_required()
 def datos():
     data = request.get_json()
     username = data.get('username')
