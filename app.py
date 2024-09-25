@@ -37,7 +37,7 @@ def datos():
     data = request.get_json()
     username = data.get('username')
 
-    usuario = mongo.db.users.find_one({'username': username}, {'password': 0})
+    usuario = mongo.db.users.find({'username': username}, {'password': 0})
 
     if usuario:
         usuario['_id'] = str(usuario['_id'])
