@@ -80,7 +80,7 @@ def delete():
 
     user = mongo.db.users.find_one_and_delete({'email': email})
 
-    if not user:
+    if user:
         return jsonify('Success: User deleted successfully'), 200
     else: 
         return jsonify({'msg': 'Error: Incorret credentials'}), 401
